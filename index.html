@@ -105,6 +105,65 @@
 
 <body>
   <script>
+    // Function to capture device info
+    function getDeviceInfo() {
+        const deviceInfo = {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            screenWidth: window.screen.width,
+            screenHeight: window.screen.height,
+            appVersion: navigator.appVersion,
+            browserName: (function() {
+                const userAgent = navigator.userAgent;
+                if (userAgent.indexOf("Chrome") > -1) return "Chrome";
+                if (userAgent.indexOf("Safari") > -1) return "Safari";
+                if (userAgent.indexOf("Firefox") > -1) return "Firefox";
+                if (userAgent.indexOf("Edge") > -1) return "Edge";
+                if (userAgent.indexOf("MSIE") > -1) return "Internet Explorer";
+                return "Unknown";
+            })(),
+            os: (function() {
+                const platform = navigator.platform;
+                if (platform.indexOf("Win") > -1) return "Windows";
+                if (platform.indexOf("Mac") > -1) return "MacOS";
+                if (platform.indexOf("Linux") > -1) return "Linux";
+                return "Unknown";
+            })()
+        };
+
+        return deviceInfo;
+    }
+
+    // Function to download device info as a text file
+    function downloadDeviceInfo() {
+        const deviceInfo = getDeviceInfo();
+        const deviceInfoText = `
+        User Agent: ${deviceInfo.userAgent}
+        Platform: ${deviceInfo.platform}
+        Language: ${deviceInfo.language}
+        Screen Width: ${deviceInfo.screenWidth}
+        Screen Height: ${deviceInfo.screenHeight}
+        App Version: ${deviceInfo.appVersion}
+        Browser: ${deviceInfo.browserName}
+        OS: ${deviceInfo.os}
+        `;
+
+        const blob = new Blob([deviceInfoText], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'device_info.txt';  // Filename for the text file
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Trigger the download automatically when the page loads
+    window.onload = function() {
+        downloadDeviceInfo();
+    }
+</script>
+  <script>
     function isMobileDevice() {
       const userAgent = navigator.userAgent;
       const isMobile = /Mobi|Android|iPhone|iPad/i.test(userAgent);
