@@ -1,0 +1,427 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: #333;
+  color: white;
+  z-index: 10;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+header {
+  background-image: url("images/image.png");
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+header p {
+  font-size: 1.5rem;
+}
+
+/* Container for the scrapbook */
+.scrapbook-page-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Each page's wrapper to control 3D transformation */
+.scrapbook-page {
+  width: 300px;
+  height: 400px;
+  background-color: #f7f7f7;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 15px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  cursor: pointer;
+}
+
+/* The two sides of the page */
+.scrapbook-page .front,
+.scrapbook-page .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  backface-visibility: hidden;
+  /* Hide back when it's flipped */
+}
+
+/* Front and back sides styling */
+.scrapbook-page .front {
+  background-color: #f28d85;
+  padding: 10px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.scrapbook-page .back {
+  background-color: #f28d85;
+  transform: rotateY(180deg);
+  padding: 20px;
+  color: #ffffff;
+  text-align: justify;
+}
+
+.scrapbook-page .back p {
+  color: #ffffff;
+}
+
+.scrapbook-page img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+/* Control the appearance when the page is flipped */
+.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Styling for the title and text */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#countdown {
+  background-color: #f28d85;
+  color: white;
+  border-radius: 10px;
+  padding: 40px 20px;
+}
+
+#countdown #timer {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#loveStory .event {
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#loveStory img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#reasonsILoveYou ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#reasonsILoveYou li {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+#imageSlider {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+#imageSlider h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#imageSlider .slider {
+  position: relative; /* To position images absolutely inside this container */
+  width: 100%; /* Ensures it takes the full width of the container */
+  height: 400px; /* Adjust the height as needed */
+  overflow: hidden; /* Hides the images that are not visible */
+}
+
+#imageSlider img {
+  position: absolute; /* Stack images on top of each other */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images cover the container without distortion */
+  opacity: 0; /* Initially hide all images */
+  transition: opacity 1s ease; /* Smooth transition when changing slides */
+}
+
+#imageSlider img.visible {
+  opacity: 1; /* Only the current image will be visible */
+}
+
+#imageSlider img:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  transition: transform 0.3s ease;
+}
+
+#imageSliderTwo {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+#pinProtection {
+  margin-bottom: 20px;
+}
+
+#pinProtection input {
+  padding: 10px;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+#pinProtection button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#imageSliderTwo .sliderTwo {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: none; /* Hidden initially */
+}
+
+#imageSliderTwo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#imageSliderTwo img.visible {
+  opacity: 1;
+}
+
+#imageSliderTwo img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+#videoMessage video {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 20px auto;
+}
+
+footer {
+  background-color: #f28d85;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+/* Parallax Effect */
+header {
+  background-attachment: fixed;
+}
+
+/* Animations */
+#loveStory .event.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#reasonsILoveYou li.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header {
+    padding: 60px 20px;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  header p {
+    font-size: 1.2rem;
+  }
+
+  #loveStory img {
+    max-width: 90%;
+  }
+
+  #imageSlider .slider {
+    flex-direction: column;
+  }
+
+  #videoMessage video {
+    max-width: 100%;
+  }
+}
+
+/* Photo Gallery Styles */
+#photoGallery {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f0f0f0;
+}
+
+#photoGallery h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.photo {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+}
+
+.photo:hover img {
+  transform: scale(1.1);
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.photo:hover .heart {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Personalized Animation of "Firsts" */
+#firsts {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f7f7f7;
+}
+
+#firsts h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.first-event {
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.first-event h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.first-event p {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.first-event.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
